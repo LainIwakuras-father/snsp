@@ -1,6 +1,6 @@
-# SNSP
-Simple Network Scanner port (C++)
-
+# Simple network scanner port(SNSP)
+Simple scanner (C++) like Nmap for education themes: InterProcess Communication(IPC) - Sockets, Unix systems callbacks,and threads.
+ 
 ## Features
 - Thread pool
 - Non blocked callbacks API standarts POSIX
