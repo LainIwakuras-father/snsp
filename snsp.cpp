@@ -18,7 +18,7 @@
 #include <cerrno>
 #include <poll.h>
 
-#define MAX_PORT 1024
+#define MAX_PORT 100
 
 using namespace std;
 
@@ -179,7 +179,7 @@ int main(int argc, char** argv){
         bool open_ports[MAX_PORT+1] = {false};
 
         // scanme.nmap.org = 45.33.32.156
-        ThreadPool pool(100);
+        ThreadPool pool(50);
         for (int i = 1; i < MAX_PORT+1;i++){
             pool.enqueue([&open_ports,scanme,i]{
                     check(scanme,i,open_ports);
@@ -189,9 +189,9 @@ int main(int argc, char** argv){
         //TODO: использовать массив вместо мьютексов
         //TODO: реализовать список самых часто используемых портов 
         //TODO: лучше сделать функцию wait()
-        this_thread::sleep_for(chrono::seconds(100));
+        // this_thread::sleep_for(chrono::seconds(100));
 
-        // pool.wait();
+        pool.wait();
 
         //вывод
         for (int port = 1;port <= MAX_PORT;port++){
